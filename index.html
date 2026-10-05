@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fellowship of Us</title>
+    <!-- Google Fonts for LOTR Aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600;700&family=MedievalSharp&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --dark-bg: #0b0c10;
+            --card-bg: #1f2833;
+            --parchment: #f4e4bc;
+            --parchment-text: #2b1e10;
+            --ring-glow: rgba(212, 175, 55, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #c5c6c7;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1, h2, h3, .lotr-font {
+            font-family: 'Cinzel Decorative', 'Cinzel', serif;
+            color: var(--gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(11, 12, 16, 0.85), rgba(11, 12, 16, 0.95)),
+                        url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1920') center/cover no-repeat;
+            padding: 20px;
+            border-bottom: 2px solid var(--gold);
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        .scroll-btn {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 12px 30px;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px var(--ring-glow);
+            border-radius: 4px;
+        }
+
+        .scroll-btn:hover {
+            background: var(--gold);
+            color: var(--dark-bg);
+            box-shadow: 0 0 25px var(--gold);
+        }
+
+        /* Container & Sections */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '⚔️';
+            display: block;
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        /* 1. Map Section */
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .location-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            padding: 25px;
+            cursor: pointer;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 5px 20px var(--ring-glow);
+        }
+
+        .location-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        .location-card span {
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* 2. Red Book Section */
+        .red-book {
+            background-color: var(--parchment);
+            color: var(--parchment-text);
+            padding: 40px;
+            border-radius: 6px;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5), 0 10px 30px rgba(0, 0, 0, 0.7);
+            font-family: 'MedievalSharp', cursive;
+            margin-bottom: 60px;
+            border: 8px solid #4a3525;
+        }
+
+        .red-book h2 {
+            color: #631212;
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-shadow: none;
+        }
+
+        .book-chapter {
+            margin-bottom: 25px;
+            border-bottom: 1px dashed #8c6d53;
+            padding-bottom: 15px;
+        }
+
+        .book-chapter h4 {
+            font-size: 1.3rem;
+            color: #4a3525;
+            margin-bottom: 5px;
+        }
+
+        /* 3. Character Card */
+        .character-card {
+            background: linear-gradient(145deg, #161b22, #1f2833);
+            border: 2px solid var(--gold);
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 600px;
+            margin: 0 auto 60px auto;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .char-header {
+            text-align: center;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .char-stat {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding: 6px 10px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 4px;
+        }
+
+        .char-stat label {
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+
+        /* 4. Soundtrack */
+        .track-list {
+            list-style: none;
+        }
+
+        .track-item {
+            background: var(--card-bg);
+            margin-bottom: 15px;
+            padding: 18px 20px;
+            border-left: 4px solid var(--gold);
+            border-radius: 0 8px 8px 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .track-title {
+            font-weight: bold;
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        .track-desc {
+            font-style: italic;
+            font-size: 0.95rem;
+            margin-top: 5px;
+        }
+
+        /* 5. Riddle / Quest */
+        .quest-box {
+            background: #11161d;
+            border: 1px solid var(--gold);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .quest-box input {
+            background: #1f2833;
+            border: 1px solid var(--gold);
+            color: white;
+            padding: 10px 15px;
+            font-size: 1rem;
+            border-radius: 4px;
+            margin: 15px 10px;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .secret-message {
+            display: none;
+            margin-top: 25px;
+            padding: 25px;
+            background: rgba(212, 175, 55, 0.15);
+            border: 2px dashed var(--gold);
+            border-radius: 8px;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Modal Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 2px solid var(--gold);
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            border-radius: 8px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 0 30px var(--ring-glow);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px; right: 15px;
+            color: var(--gold);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 0.85rem;
+            border-top: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>THE FELLOWSHIP OF US</h1>
+        <p>A journey beyond the borders of Middle-earth...</p>
+        <button class="scroll-btn" onclick="scrollToSection('map')">YOLCULUĞA BAŞLA</button>
+    </section>
+
+    <div class="container">
+
+        <!-- 1. INTERACTIVE MAP SECTION -->
+        <section id="map" style="margin-bottom: 80px;">
+            <h2 class="section-title">Our Middle-Earth</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: var(--gold-light);">
+                Anılarımızın gizlendiği Orta Dünya haritası. Keşfetmek için bir bölgeye tıkla:
+            </p>
+            <div class="map-grid">
+                <div class="location-card" onclick="openModal('Shire', 'İlk Tanışmamız', 'Her şeyin başladığı o huzurlu yer. Konuşmaya başladığımız ilk an, hayatıma kattığın o sakin ve tatlı huzur tam olarak Shire gibiydi.')">
+                    <h3>🏡 Shire</h3>
+                    <span>İlk Konuştuğumuz Zaman</span>
+                </div>
+                <div class="location-card" onclick="openModal('Bree', 'En Komik Anımız', 'Sıçrayan Midilli Hanı\'ndaki o tatlı kargaşa gibi... [Buraya ikinizin yaşadığı komik bir anıyı veya iç şakayı yazabilirsin]')">
+                    <h3>🍺 Bree</h3>
+                    <span>Komik Bir Anı</span>
+                </div>
+                <div class="location-card" onclick="openModal('Rivendell', 'Sende Sevdiğim Şeyler', 'Elf diyarı gibi büyüleyici ve huzur verici. Sen de hayatımda gördüğüm en ince ruhlu, en zeki insansın.')">
+                    <h3>🧝‍♂️️ Rivendell</h3>
+                    <span>Sevdiğim Özelliklerin</span>
+                </div>
+                <div class="location-card" onclick="openModal('Moria', 'Aştığımız Engeller', 'Moria Karanlığı kadar zorlu geçen günlerde bile birbirimizin ışığı olmayı başardık. Kilometreler bile bunu değiştiremedi.')">
+                    <h3>💎 Moria</h3>
+                    <span>Birlikte Atlattığımız Günler</span>
+                </div>
+                <div class="location-card" onclick="openModal('Lothlórien', 'En Güzel Anımız', 'Zamanın durduğu o büyülü an... [Aramızda yaşadığımız en unutulmaz tatlı anı]')">
+                    <h3>🍃 Lothlórien</h3>
+                    <span>Unutulmaz Bir Anı</span>
+                </div>
+                <div class="location-card" onclick="openModal('Gondor', 'Geleceğe Dair Umudum', 'Kralların dönüşü gibi, bizim de yan yana geleceğimiz ve aynı evi paylaşacağımız o büyük gün yakında gelecek.')">
+                    <h3>👑 Gondor</h3>
+                    <span>Gelecek Dileğimiz</span>
+                </div>
+                <div class="location-card" onclick="openModal('Mordor', 'Asla Gitmeyelim!', 'Seninle saatlerce tartışıp çözemediğimiz o saçma konu... Buraya birlikte asla adım atmayacağız! 😭')">
+                    <h3>🌋 Mordor</h3>
+                    <span>Yasaklı Bölgemiz</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. THE RED BOOK OF BURAK -->
+        <section style="margin-bottom: 80px;">
+            <div class="red-book">
+                <h2>THE RED BOOK OF BURAK</h2>
+                <p style="text-align: center; font-style: italic; margin-bottom: 30px;">
+                    "Being an account of one particular human who somehow managed to become very important to another human living far away."
+                </p>
+                
+                <div class="book-chapter">
+                    <h4>I — The Beginning</h4>
+                    <p>[Uzak mesafeden ilk nasıl bağlandığınızı, mesajlaşmaya başladığınız o ilk zamanları buraya yazabilirsin.]</p>
+                </div>
+                
+                <div class="book-chapter">
+                    <h4>II — The Fellowship</h4>
+                    <p>[İkinizin beraber güldüğü, konuştuğu, saatlerce görüntülü aramalarda yaptığınız tatlı ritüeller.]</p>
+                </div>
+
+                <div class="book-chapter">
+                    <h4>III — Tales From Distant Lands</h4>
+                    <p>[Uzak mesafe ilişkisinin zorlukları ama senin ona olan sevginin bu mesafeyi nasıl küçücük yaptığı.]</p>
+                </div>
+
+                <div class="book-chapter">
+                    <h4>IV — The Road Goes Ever On</h4>
+                    <p>[Birlikte gezeceğiniz yerler, yan yana geldiğinizde yapacağınız ilk şeyler ve geleceğiniz.]</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. CHARACTER PROFILE -->
+        <section style="margin-bottom: 80px;">
+            <h2 class="section-title">Character Profile</h2>
+            <div class="character-card">
+                <div class="char-header">
+                    <h3 style="font-size: 1.8rem; color: var(--gold);">BURAK</h3>
+                    <p style="color: var(--gold-light); font-style: italic;">The Defender of My Heart</p>
+                </div>
+                <div class="char-stat"><label>RACE:</label> <span>Dúnedain / Human</span></div>
+                <div class="char-stat"><label>CLASS:</label> <span>Ranger & Comfort Person</span></div>
+                <div class="char-stat"><label>SPECIAL ABILITY:</label> <span>Tek bir kelimesiyle modumu düzeltme</span></div>
+                <div class="char-stat"><label>WEAPON:</label> <span>Büyüleyici Gülüşü</span></div>
+                <div class="char-stat"><label>GREATEST WEAKNESS:</label> <span>Bana olan kıyamamazlığı</span></div>
+                <div class="char-stat"><label>CURRENT QUEST:</label> <span>Aramızdaki kilometreleri sıfırlamak</span></div>
+                <div class="char-stat" style="border: 1px solid var(--gold); margin-top: 15px;">
+                    <label style="color: var(--gold);">FELLOWSHIP STATUS:</label> 
+                    <span style="color: var(--gold-light); font-weight: bold;">Sene ve mesafeye bakmaksızın seninle her yola gelecek 1 kişi var. ❤️</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. SOUNDTRACK -->
+        <section style="margin-bottom: 80px;">
+            <h2 class="section-title">The Fellowship Soundtrack</h2>
+            <ul class="track-list">
+                <li class="track-item">
+                    <span class="track-title">🎵 Track I — Concerning Hobbits (The Shire)</span>
+                    <span class="track-desc">"Bana verdiğin o ilk huzurlu hissi ve ilk sohbetlerimizi hatırlatıyor."</span>
+                </li>
+                <li class="track-item">
+                    <span class="track-title">🎵 Track II — The Bridge of Khazad-dûm</span>
+                    <span class="track-desc">"Birlikte atlattığımız her zorlu günde arkamızda çalan o epik mücadele müziği."</span>
+                </li>
+                <li class="track-item">
+                    <span class="track-title">🎵 Track III — Into the West</span>
+                    <span class="track-desc">"Uzakta da olsan kalbimin her zaman seninle güvende olduğunu hissettiren şarkı."</span>
+                </li>
+                <li class="track-item">
+                    <span class="track-title">🎵 Track IV — The Breaking of the Fellowship</span>
+                    <span class="track-desc">"Vedalaşırken veya birbirimizi özlerken aklıma gelen ama sonu kavuşmaya çıkan melodi."</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 5. RIDDLE / QUEST SECTION -->
+        <section id="quest" style="margin-bottom: 80px;">
+            <h2 class="section-title">Accept Your Quest</h2>
+            <div class="quest-box">
+                <p style="font-size: 1.1rem; margin-bottom: 15px; color: var(--gold-light);">
+                    "Gizli mektubu açmak için bilmeceyi çözmelisin."
+                </p>
+                <p style="font-style: italic; margin-bottom: 15px;">
+                    Soru: Sauron'un Yüzük'ü dövdüğü, bizim ise ilişkide asla gitmeyeceğimiz yer neresidir?
+                </p>
+                <input type="text" id="questInput" placeholder="Cevabı buraya yaz (Küçük harfle)">
+                <br>
+                <button class="scroll-btn" onclick="checkAnswer()">KİLİDİ AÇ</button>
+
+                <div id="secretMessage" class="secret-message">
+                    <h3 style="color: var(--gold); margin-bottom: 15px;">📜 SANA ÖZEL GİZLİ MEKTUP</h3>
+                    <p style="color: #fff; line-height: 1.8;">
+                        [BURAYA ERKEK ARKADAŞINA YAZMAK İSTEDİĞİN EN DUYGUSAL, EN GÜZEL UZAK MESAFE MEKTUBUNU EKLEYEBİLİRSİN. 
+                        SENİ ÇOK SEVİYORUM VE BİRLİKTE BÜTÜN ORTA DÜNYA'YI (VE GERÇEK DÜNYAYI) GEZECEĞİMİZ GÜNÜ SABIRSIZLIKLA BEKLİYORUM!]
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- MODAL POPUP -->
+    <div id="mapModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle" style="margin-bottom: 10px;"></h3>
+            <h4 id="modalSubtitle" style="color: var(--gold-light); font-size: 0.9rem; margin-bottom: 15px; text-transform: uppercase;"></h4>
+            <p id="modalText" style="color: #ddd;"></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Crafted with love for Burak • Middle-earth Edition</p>
+    </footer>
+
+    <script>
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openModal(title, subtitle, text) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalSubtitle').innerText = subtitle;
+            document.getElementById('modalText').innerText = text;
+            document.getElementById('mapModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('mapModal').style.display = 'none';
+        }
+
+        function checkAnswer() {
+            const input = document.getElementById('questInput').value.toLowerCase().trim();
+            // Cevap 'mordor' olarak ayarlandı
+            if (input === 'mordor') {
+                document.getElementById('secretMessage').style.display = 'block';
+                document.getElementById('secretMessage').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert('Yanlış cevap! İpucu: Yasaklı bölgemiz olan yanardağ diyarı... 😉');
+            }
+        }
+
+        // Window click to close modal
+        window.onclick = function(event) {
+            const modal = document.getElementById('mapModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
