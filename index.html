@@ -1,423 +1,3716 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Chronicle of Burak | The Red Book</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Faustina:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --burgundy: #5c0612;
-      --burgundy-bright: #800a1b;
-      --burgundy-dark: #2a0207;
-      --gold: #d4af37;
-      --gold-light: #f3e5ab;
-      --black: #0a0809;
-      --dark-card: #150c0e;
-      --text-light: #e8d8ce;
-      --text-dim: #a38f84;
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Fellowship of Us</title>
+
+<style>
+
+/* =========================================================
+   FONTS
+========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=IM+Fell+English:ital@0;1&family=Inter:wght@400;500;600&display=swap');
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+
+    --gold: #c8a96b;
+    --gold-dark: #927744;
+
+    --wine: #641f30;
+    --wine-light: #823247;
+
+    --black: #070606;
+    --dark: #0d0b09;
+    --dark-two: #15120f;
+
+    --paper: #18130d;
+
+    --text: #eee4d0;
+    --muted: #aaa08e;
+
+    --border: rgba(200,169,107,.32);
+
+}
+
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    color: var(--text);
+
+    font-family: Inter, sans-serif;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 5%,
+            rgba(100,31,48,.28),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(200,169,107,.06),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            180deg,
+            #070606,
+            #12100d 50%,
+            #060505
+        );
+
+}
+
+
+/* subtle grain */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: .07;
+
+    background-image:
+        radial-gradient(
+            #ffffff .5px,
+            transparent .7px
+        );
+
+    background-size: 5px 5px;
+
+}
+
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+h1,
+h2,
+h3 {
+
+    font-family: Cinzel, serif;
+
+}
+
+.roman {
+
+    font-family: "IM Fell English", serif;
+
+}
+
+h1 {
+
+    font-size: clamp(
+        2.8rem,
+        8vw,
+        6.5rem
+    );
+
+    line-height: .95;
+
+    margin: 20px 0;
+
+}
+
+h2 {
+
+    color: var(--gold);
+
+}
+
+p {
+
+    line-height: 1.8;
+
+}
+
+
+/* =========================================================
+   SCREENS
+========================================================= */
+
+.screen {
+
+    display: none;
+
+    min-height: 100vh;
+
+    padding:
+        35px
+        18px;
+
+}
+
+.screen.active {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+.container {
+
+    width: min(
+        1050px,
+        100%
+    );
+
+    margin: auto;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    max-width: 850px;
+
+    margin: auto;
+
+    text-align: center;
+
+}
+
+.kicker {
+
+    color: var(--gold);
+
+    text-transform: uppercase;
+
+    letter-spacing: .28em;
+
+    font-size: .7rem;
+
+}
+
+.subtitle {
+
+    font-family:
+        "IM Fell English",
+        serif;
+
+    font-size: 1.35rem;
+
+    color: #cbbda5;
+
+}
+
+.divider {
+
+    width: 130px;
+
+    height: 1px;
+
+    background:
+        var(--gold);
+
+    opacity: .65;
+
+    margin: 30px auto;
+
+}
+
+.note {
+
+    color: var(--muted);
+
+    line-height: 1.8;
+
+}
+
+
+/* =========================================================
+   QUOTES
+========================================================= */
+
+.quote {
+
+    font-family:
+        "IM Fell English",
+        serif;
+
+    font-style: italic;
+
+    font-size: 1.25rem;
+
+    line-height: 1.8;
+
+    border-left:
+        2px solid
+        var(--wine);
+
+    padding-left: 18px;
+
+    text-align: left;
+
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn {
+
+    background:
+        rgba(100,31,48,.25);
+
+    border:
+        1px solid
+        var(--gold);
+
+    color:
+        var(--text);
+
+    padding:
+        13px 22px;
+
+    cursor: pointer;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        .12em;
+
+    font-size:
+        .72rem;
+
+    transition:
+        .25s;
+
+}
+
+.btn:hover {
+
+    background:
+        rgba(100,31,48,.6);
+
+    transform:
+        translateY(-2px);
+
+}
+
+.nav {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    justify-content:
+        center;
+
+    gap:
+        10px;
+
+    margin:
+        30px 0;
+
+}
+
+.nav button {
+
+    background:
+        transparent;
+
+    color:
+        var(--muted);
+
+    border:
+        1px solid
+        var(--border);
+
+    padding:
+        9px 13px;
+
+    cursor:
+        pointer;
+
+}
+
+.nav button:hover {
+
+    color:
+        var(--text);
+
+    border-color:
+        var(--gold);
+
+}
+
+
+/* =========================================================
+   PANELS
+========================================================= */
+
+.panel {
+
+    background:
+        rgba(20,17,13,.92);
+
+    border:
+        1px solid
+        var(--border);
+
+    padding:
+        30px;
+
+    margin:
+        18px 0;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.4);
+
+}
+
+
+/* =========================================================
+   MAP
+========================================================= */
+
+.map {
+
+    min-height:
+        500px;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        var(--border);
+
+    background:
+
+        radial-gradient(
+            ellipse at 20% 30%,
+            rgba(100,31,48,.18),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            ellipse at 75% 65%,
+            rgba(200,169,107,.09),
+            transparent 30%
+        ),
+
+        #15130f;
+
+}
+
+
+/* map texture */
+
+.map::after {
+
+    content: "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    pointer-events:
+        none;
+
+    background:
+
+        repeating-linear-gradient(
+            12deg,
+            transparent 0 27px,
+            rgba(200,169,107,.025) 28px 29px
+        );
+
+}
+
+
+/* map nodes */
+
+.node {
+
+    position:
+        absolute;
+
+    transform:
+        translate(-50%,-50%);
+
+    width:
+        90px;
+
+    height:
+        90px;
+
+    border-radius:
+        50%;
+
+    border:
+        1px solid
+        var(--gold);
+
+    background:
+        rgba(8,7,6,.96);
+
+    color:
+        var(--text);
+
+    cursor:
+        pointer;
+
+    z-index:
+        3;
+
+    font-family:
+        Cinzel,
+        serif;
+
+    font-size:
+        .65rem;
+
+    padding:
+        8px;
+
+    transition:
+        .3s;
+
+}
+
+.node:hover {
+
+    box-shadow:
+        0 0 30px
+        rgba(200,169,107,.35);
+
+    transform:
+        translate(-50%,-50%)
+        scale(1.08);
+
+}
+
+
+/* node positions */
+
+.shire {
+
+    left:
+        16%;
+
+    top:
+        28%;
+
+}
+
+.rivendell {
+
+    left:
+        38%;
+
+    top:
+        18%;
+
+}
+
+.gondor {
+
+    left:
+        68%;
+
+    top:
+        29%;
+
+}
+
+.road {
+
+    left:
+        48%;
+
+    top:
+        52%;
+
+}
+
+.moria {
+
+    left:
+        25%;
+
+    top:
+        68%;
+
+}
+
+.lorien {
+
+    left:
+        68%;
+
+    top:
+        68%;
+
+}
+
+.mordor {
+
+    left:
+        87%;
+
+    top:
+        51%;
+
+}
+
+
+/* map paths */
+
+.path {
+
+    position:
+        absolute;
+
+    height:
+        1px;
+
+    background:
+        var(--border);
+
+    transform-origin:
+        left center;
+
+    z-index:
+        1;
+
+}
+
+.path1 {
+
+    left:
+        19%;
+
+    top:
+        30%;
+
+    width:
+        23%;
+
+    transform:
+        rotate(-17deg);
+
+}
+
+.path2 {
+
+    left:
+        41%;
+
+    top:
+        22%;
+
+    width:
+        29%;
+
+    transform:
+        rotate(14deg);
+
+}
+
+.path3 {
+
+    left:
+        48%;
+
+    top:
+        54%;
+
+    width:
+        24%;
+
+    transform:
+        rotate(-18deg);
+
+}
+
+.path4 {
+
+    left:
+        29%;
+
+    top:
+        69%;
+
+    width:
+        40%;
+
+    transform:
+        rotate(-2deg);
+
+}
+
+.path5 {
+
+    left:
+        70%;
+
+    top:
+        68%;
+
+    width:
+        18%;
+
+    transform:
+        rotate(-39deg);
+
+}
+
+
+/* =========================================================
+   RED BOOK
+========================================================= */
+
+.book {
+
+    max-width:
+        850px;
+
+    min-height:
+        550px;
+
+    margin:
+        auto;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(200,169,107,.05),
+            transparent 60%
+        ),
+
+        #17120c;
+
+    border:
+        1px solid
+        #8e7547;
+
+    padding:
+        clamp(
+            28px,
+            7vw,
+            65px
+        );
+
+    box-shadow:
+        0 25px 80px
+        #000;
+
+}
+
+.chapter {
+
+    display:
+        none;
+
+}
+
+.chapter.active {
+
+    display:
+        block;
+
+}
+
+.chapter h2 {
+
+    text-align:
+        center;
+
+    font-size:
+        clamp(
+            1.8rem,
+            5vw,
+            3.2rem
+        );
+
+}
+
+.chapter-title {
+
+    color:
+        var(--gold);
+
+    font-size:
+        .8em;
+
+}
+
+.page-controls {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    margin-top:
+        40px;
+
+}
+
+
+/* =========================================================
+   QUEST
+========================================================= */
+
+.quest {
+
+    text-align:
+        center;
+
+}
+
+.quest-text {
+
+    font-family:
+        "IM Fell English",
+        serif;
+
+    font-size:
+        1.35rem;
+
+    line-height:
+        1.8;
+
+}
+
+.choices {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(210px,1fr)
+        );
+
+    gap:
+        14px;
+
+    margin-top:
+        25px;
+
+}
+
+.choice {
+
+    padding:
+        20px;
+
+    background:
+        rgba(100,31,48,.14);
+
+    color:
+        var(--text);
+
+    border:
+        1px solid
+        var(--border);
+
+    cursor:
+        pointer;
+
+    line-height:
+        1.5;
+
+    transition:
+        .25s;
+
+}
+
+.choice:hover {
+
+    background:
+        rgba(100,31,48,.4);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+   CHARACTER
+========================================================= */
+
+.character-section {
+
+    max-width:
+        850px;
+
+    margin:
+        auto;
+
+}
+
+.character-section h2 {
+
+    margin-top:
+        45px;
+
+}
+
+.character-section p {
+
+    font-family:
+        "IM Fell English",
+        serif;
+
+    font-size:
+        1.22rem;
+
+    line-height:
+        1.95;
+
+}
+
+
+/* =========================================================
+   SOUNDTRACK
+========================================================= */
+
+.track {
+
+    display:
+        flex;
+
+    gap:
+        20px;
+
+    padding:
+        20px 0;
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+}
+
+.track:last-child {
+
+    border-bottom:
+        none;
+
+}
+
+.track-number {
+
+    color:
+        var(--gold);
+
+    font-family:
+        Cinzel,
+        serif;
+
+    min-width:
+        35px;
+
+}
+
+.track h3 {
+
+    margin:
+        0 0 8px;
+
+}
+
+.track p {
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.7;
+
+    margin:
+        0;
+
+}
+
+
+/* =========================================================
+   RIDDLE
+========================================================= */
+
+.riddle {
+
+    text-align:
+        center;
+
+    max-width:
+        750px;
+
+    margin:
+        auto;
+
+}
+
+.riddle-text {
+
+    font-family:
+        "IM Fell English",
+        serif;
+
+    font-size:
+        1.4rem;
+
+    line-height:
+        1.8;
+
+}
+
+input {
+
+    width:
+        min(
+            430px,
+            100%
+        );
+
+    padding:
+        13px;
+
+    background:
+        #090807;
+
+    border:
+        1px solid
+        var(--border);
+
+    color:
+        var(--text);
+
+    margin:
+        15px 0;
+
+}
+
+.secret {
+
+    display:
+        none;
+
+}
+
+.secret.show {
+
+    display:
+        block;
+
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.final {
+
+    max-width:
+        850px;
+
+    margin:
+        auto;
+
+}
+
+.final p {
+
+    font-family:
+        "IM Fell English",
+        serif;
+
+    font-size:
+        1.25rem;
+
+    line-height:
+        1.95;
+
+}
+
+.signature {
+
+    text-align:
+        center;
+
+    color:
+        var(--gold);
+
+    font-family:
+        Cinzel,
+        serif;
+
+    letter-spacing:
+        .12em;
+
+}
+
+.footer {
+
+    text-align:
+        center;
+
+    color:
+        #6f6658;
+
+    font-size:
+        .72rem;
+
+    margin:
+        35px 0;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:650px) {
+
+    .screen {
+
+        padding:
+            22px 12px;
+
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    .panel {
+
+        padding:
+            20px;
+
     }
 
-    body {
-      background-color: var(--black);
-      color: var(--text-light);
-      font-family: 'Faustina', serif;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-image: 
-        radial-gradient(circle at 50% 20%, rgba(92, 6, 18, 0.35) 0%, transparent 70%),
-        radial-gradient(circle at 50% 80%, rgba(10, 8, 9, 0.9) 0%, transparent 100%);
-      padding: 20px;
-      overflow-x: hidden;
+    .map {
+
+        min-height:
+            580px;
+
     }
 
-    /* Passcode Screen */
-    #lock-screen {
-      text-align: center;
-      max-width: 450px;
-      width: 100%;
-      background: var(--dark-card);
-      border: 2px solid var(--burgundy);
-      padding: 40px 25px;
-      border-radius: 8px;
-      box-shadow: 0 0 35px rgba(92, 6, 18, 0.5), inset 0 0 15px rgba(0,0,0,0.8);
-      position: relative;
+    .node {
+
+        width:
+            75px;
+
+        height:
+            75px;
+
+        font-size:
+            .56rem;
+
     }
 
-    #lock-screen::before {
-      content: "✦ ⚙ ✦";
-      display: block;
-      color: var(--gold);
-      font-size: 1.2rem;
-      letter-spacing: 6px;
-      margin-bottom: 15px;
-    }
+}
 
-    h1, h2, h3 {
-      font-family: 'Cinzel', serif;
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
 
-    #lock-screen h1 {
-      font-size: 1.8rem;
-      margin-bottom: 8px;
-      text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-    }
+/* =========================================================
+   END CSS
+========================================================= */
 
-    #lock-screen p {
-      color: var(--text-dim);
-      font-size: 1.05rem;
-      margin-bottom: 25px;
-      font-style: italic;
-    }
+</style>
 
-    .passcode-inputs {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 25px;
-    }
-
-    .passcode-inputs input {
-      width: 50px;
-      height: 60px;
-      background: var(--burgundy-dark);
-      border: 1px solid var(--gold);
-      border-radius: 4px;
-      color: var(--gold-light);
-      font-family: 'Cinzel', serif;
-      font-size: 1.8rem;
-      text-align: center;
-      outline: none;
-      transition: all 0.3s;
-    }
-
-    .passcode-inputs input:focus {
-      border-color: var(--gold-light);
-      box-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
-      background: var(--burgundy);
-    }
-
-    .btn-unlock {
-      background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
-      color: var(--gold-light);
-      border: 1px solid var(--gold);
-      padding: 12px 30px;
-      font-family: 'Cinzel', serif;
-      font-size: 1rem;
-      font-weight: 700;
-      border-radius: 4px;
-      cursor: pointer;
-      letter-spacing: 2px;
-      transition: all 0.3s;
-    }
-
-    .btn-unlock:hover {
-      background: var(--burgundy-bright);
-      box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-      transform: translateY(-2px);
-    }
-
-    #error-msg {
-      color: #ff4d4d;
-      margin-top: 15px;
-      font-size: 0.95rem;
-      display: none;
-    }
-
-    /* Main Content */
-    #main-content {
-      display: none;
-      max-width: 800px;
-      width: 100%;
-      background: var(--dark-card);
-      border: 2px solid var(--burgundy);
-      border-radius: 12px;
-      padding: 40px 30px;
-      box-shadow: 0 0 50px rgba(0,0,0,0.9), 0 0 20px rgba(92, 6, 18, 0.6);
-      margin: 20px 0;
-    }
-
-    .header-banner {
-      text-align: center;
-      border-bottom: 2px solid var(--burgundy);
-      padding-bottom: 25px;
-      margin-bottom: 35px;
-    }
-
-    .header-banner h1 {
-      font-size: 2.3rem;
-      margin-bottom: 8px;
-    }
-
-    .header-banner .subtitle {
-      color: var(--gold-light);
-      font-size: 1.1rem;
-      font-style: italic;
-    }
-
-    .badge-container {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-top: 15px;
-    }
-
-    .badge {
-      background: var(--burgundy-dark);
-      border: 1px solid var(--burgundy);
-      color: var(--text-dim);
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-family: 'Cinzel', serif;
-    }
-
-    /* Quest Sections */
-    .quest-card {
-      background: rgba(10, 8, 9, 0.6);
-      border-left: 3px solid var(--gold);
-      padding: 20px 25px;
-      margin-bottom: 25px;
-      border-radius: 0 8px 8px 0;
-      transition: transform 0.2s;
-    }
-
-    .quest-card:hover {
-      transform: translateX(4px);
-    }
-
-    .quest-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .quest-card p {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: var(--text-light);
-    }
-
-    .quote-box {
-      background: var(--burgundy-dark);
-      border: 1px dashed var(--gold);
-      padding: 15px 20px;
-      margin: 15px 0;
-      border-radius: 6px;
-      font-style: italic;
-      color: var(--gold-light);
-      font-size: 1.05rem;
-    }
-
-    .interactive-section {
-      background: var(--burgundy-dark);
-      border: 1px solid var(--burgundy);
-      padding: 25px;
-      border-radius: 8px;
-      margin-top: 35px;
-      text-align: center;
-    }
-
-    .choice-btns {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
-      flex-wrap: wrap;
-    }
-
-    .btn-choice {
-      background: var(--black);
-      border: 1px solid var(--gold);
-      color: var(--text-light);
-      padding: 10px 20px;
-      font-family: 'Cinzel', serif;
-      font-size: 0.95rem;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .btn-choice:hover {
-      background: var(--burgundy);
-      color: var(--gold-light);
-    }
-
-    #choice-result {
-      margin-top: 20px;
-      font-size: 1.1rem;
-      color: var(--gold-light);
-      display: none;
-      padding: 15px;
-      background: rgba(0,0,0,0.4);
-      border-radius: 6px;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      padding-top: 20px;
-      border-top: 1px solid var(--burgundy);
-      color: var(--text-dim);
-      font-size: 0.95rem;
-    }
-
-    footer .italics {
-      font-size: 1.2rem;
-      color: var(--gold);
-      display: block;
-      margin-top: 8px;
-    }
-  </style>
 </head>
+
+
 <body>
 
-  <!-- Lock Screen -->
-  <div id="lock-screen">
-    <h1>The Red Book of Burak</h1>
-    <p>Enter the passcode to unveil the realm of il mio adagio...</p>
-    <div class="passcode-inputs">
-      <input type="password" maxlength="1" id="digit1" autofocus>
-      <input type="password" maxlength="1" id="digit2">
-      <input type="password" maxlength="1" id="digit3">
-    </div>
-    <button class="btn-unlock" onclick="checkPasscode()">Open the Vault</button>
-    <div id="error-msg">The spell fails... Only the Sweetest number unlocks this path.</div>
-  </div>
 
-  <!-- Main Content -->
-  <div id="main-content">
-    
-    <div class="header-banner">
-      <h1>The Legend of Dracula Burak</h1>
-      <div class="subtitle">Chronicles of a 839 km Journey Across Kingdoms</div>
-      <div class="badge-container">
-        <span class="badge">⚔️ Level 21 Ranger</span>
-        <span class="badge">🛡️ Aragorn's Resolve</span>
-        <span class="badge">🎸 Master of Riffs</span>
-        <span class="badge">💻 Tech Sorcerer</span>
-      </div>
-    </div>
+<!-- =======================================================
+     HOME
+======================================================== -->
 
-    <!-- Chapter 1: The Encounter -->
-    <div class="quest-card">
-      <h3>📜 Chapter I: The Cosmic Encounter</h3>
-      <p>
-        Across the digital ether, two distant souls aligned. It began not with standard scrolls, but with an ancient alien alphabet sent from afar. Before long, a Queen of Zarveth from Saturn found her match in Dracula Burak—a sharp-minded vampire from his own castle, with unrivaled taste in music and games.
-      </p>
-      <div class="quote-box">
-        "I was a stranger among people... in you, I found myself. That is why I chose you."
-      </div>
-    </div>
+<section id="home" class="screen active">
 
-    <!-- Chapter 2: The Bush Incident -->
-    <div class="quest-card">
-      <h3>🗡️ Chapter II: The Trial of the Bush</h3>
-      <p>
-        When 839 kilometers yielded to our first real meeting, fate tested our courage. A lost artifact—a fallen phone—vanished deep into the dark bushes. Without hesitation, you vaulted over the fences like a true Ranger of the North to reclaim it. True chivalry still lives in the Third Age.
-      </p>
-    </div>
+<div class="container hero">
 
-    <!-- Chapter 3: The Soul Contract -->
-    <div class="quest-card">
-      <h3>🍷 Chapter III: The Eternal Realm</h3>
-      <p>
-        You are an extraordinary problem solver, driven by curiosity, deeply respectful, and quiet until surrounded by those you love. Together, we share a singular hearth of passion: heavy riffs, dark fantasy realms, and dreams of a quiet house filled with cats, music gear, and endless adventures.
-      </p>
-      <div class="quote-box">
-        "Ruhum sarıldı sana..." — My sweet 666
-      </div>
-    </div>
+<div class="kicker">
+A private chronicle beyond the borders of Middle-earth
+</div>
 
-    <!-- Chapter 4: Realms & Riffs -->
-    <div class="quest-card">
-      <h3>🦇 Chapter IV: Sacred Realms & Metal Hymns</h3>
-      <p>
-        Dedicated to the legends of <strong>Witcher 3, Devil May Cry, Berserk, The Last of Us, GoW, Spider-Man, and Star Wars</strong>...<br>
-        Resonating to the heavy chords of <strong>Buckethead, HIM, Deftones, Gojira, Iron Maiden, Sleep Token, Tool, and Dream Theater</strong>.
-      </p>
-    </div>
 
-    <!-- Interactive Section -->
-    <div class="interactive-section">
-      <h3>⚔️ Choose Your Destiny, Adagio</h3>
-      <p style="color: var(--text-dim); margin-top: 5px;">What shall be our next quest in the physical realm?</p>
-      
-      <div class="choice-btns">
-        <button class="btn-choice" onclick="showChoice(1)">🏡 Build the Sanctuary</button>
-        <button class="btn-choice" onclick="showChoice(2)">🎸 Form the Band</button>
-        <button class="btn-choice" onclick="showChoice(3)">🌍 Cross the 839 km</button>
-      </div>
+<h1>
 
-      <div id="choice-result"></div>
-    </div>
+The Fellowship
+<br>
 
-    <footer>
-      <p>I am proud of you, always standing right behind you. Distance is merely a temporary detail—my soul remains glued to yours forever.</p>
-      <span class="italics">Musica sei, Adagio.</span>
-    </footer>
+of Us
 
-  </div>
+</h1>
 
-  <script>
-    // Passcode logic
-    const inputs = document.querySelectorAll('.passcode-inputs input');
-    
-    inputs.forEach((input, index) => {
-      input.addEventListener('input', (e) => {
-        if (e.target.value.length === 1 && index < inputs.length - 1) {
-          inputs[index + 1].focus();
+
+<div class="divider"></div>
+
+
+<p class="subtitle">
+
+For Burak —
+
+also known, in one distant kingdom,
+
+as Dracula Burak.
+
+</p>
+
+
+<p class="quote">
+
+Some roads are measured in miles.
+
+Others are measured in all the moments
+that make the distance worth crossing.
+
+</p>
+
+
+<button
+class="btn"
+onclick="showScreen('map')">
+
+Begin the journey
+
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- =======================================================
+     OUR MIDDLE-EARTH
+======================================================== -->
+
+<section id="map" class="screen">
+
+<div class="container">
+
+
+<div class="hero">
+
+<div class="kicker">
+The road between two souls
+</div>
+
+
+<h1>
+Our Middle-earth
+</h1>
+
+
+<p class="note">
+
+Seven places.
+
+Seven pieces of a story.
+
+Click a place and discover
+what has been hidden there.
+
+</p>
+
+</div>
+
+
+
+<div class="map">
+
+
+<div class="path path1"></div>
+<div class="path path2"></div>
+<div class="path path3"></div>
+<div class="path path4"></div>
+<div class="path path5"></div>
+
+
+<button
+class="node shire"
+onclick="place('shire')">
+
+The Shire
+
+</button>
+
+
+<button
+class="node rivendell"
+onclick="place('rivendell')">
+
+Rivendell
+
+</button>
+
+
+<button
+class="node gondor"
+onclick="place('gondor')">
+
+Gondor
+
+</button>
+
+
+<button
+class="node road"
+onclick="place('road')">
+
+The Long Road
+
+</button>
+
+
+<button
+class="node moria"
+onclick="place('moria')">
+
+Moria
+
+</button>
+
+
+<button
+class="node lorien"
+onclick="place('lorien')">
+
+Lothlórien
+
+</button>
+
+
+<button
+class="node mordor"
+onclick="place('mordor')">
+
+Mordor
+
+</button>
+
+
+</div>
+
+
+
+<div
+id="placePanel"
+class="panel">
+
+<h2>
+Choose a place
+</h2>
+
+<p class="note">
+The map is waiting for you.
+</p>
+
+</div>
+
+
+
+<div class="nav">
+
+<button onclick="showScreen('book')">
+Open the Red Book
+</button>
+
+<button onclick="showScreen('quest')">
+Accept the Quest
+</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =======================================================
+     RED BOOK
+======================================================== -->
+
+<section id="book" class="screen">
+
+<div class="container">
+
+
+<div class="book">
+
+
+<div
+id="chapter1"
+class="chapter active">
+
+
+<div class="kicker">
+The Red Book — Private Edition
+</div>
+
+
+<h2>
+
+Chapter I
+
+<br>
+
+<span class="chapter-title">
+The Beginning
+</span>
+
+</h2>
+
+
+<p class="quote">
+
+There was no prophecy,
+no council of kings,
+and no messenger from the stars.
+
+There was only a musician,
+a curious profile,
+and a stranger whose taste in music
+was suspiciously perfect.
+
+</p>
+
+
+<p class="roman">
+
+A chance encounter became a message.
+
+A message became a conversation.
+
+And before either of them
+could quite name what was happening,
+a road had begun.
+
+</p>
+
+
+<p class="roman">
+
+Perhaps the strangest journeys
+begin exactly like that.
+
+Quietly.
+
+Almost by accident.
+
+</p>
+
+
+</div>
+
+
+
+<div
+id="chapter2"
+class="chapter">
+
+
+<h2>
+
+Chapter II
+
+<br>
+
+<span class="chapter-title">
+The Fellowship
+</span>
+
+</h2>
+
+
+<p class="roman">
+
+Four months since the first page.
+
+Three months since the story
+took its more serious name.
+
+</p>
+
+
+<p class="roman">
+
+There were strange alphabets.
+
+A Queen from Zarveth.
+
+A vampire with a castle.
+
+And one unfortunate phone
+that somehow found itself
+inside a bush.
+
+</p>
+
+
+<p class="roman">
+
+Fortunately,
+Dracula Burak was brave enough
+to cross the fence and retrieve it.
+
+</p>
+
+
+<p class="roman">
+
+Every great tale needs
+at least one ridiculous chapter.
+
+I am glad ours has one.
+
+</p>
+
+
+</div>
+
+
+
+<div
+id="chapter3"
+class="chapter">
+
+
+<h2>
+
+Chapter III
+
+<br>
+
+<span class="chapter-title">
+The Things I See in You
+</span>
+
+</h2>
+
+
+<p class="roman">
+
+There are things about you
+that I admire more than I know
+how to explain.
+
+</p>
+
+
+<p class="roman">
+
+Your mercy.
+
+Your understanding.
+
+Your empathy.
+
+The way you can look at someone
+and try to understand them
+before judging them.
+
+</p>
+
+
+<p class="roman">
+
+I love the way your mind works too.
+
+You do not simply want to know
+that something works.
+
+You want to know why.
+
+You want to understand it,
+take it apart,
+solve it,
+find the answer.
+
+</p>
+
+
+<p class="roman">
+
+And then there is the quieter part
+of you.
+
+The part that does not belong
+to everyone.
+
+The part that opens up
+around the people you trust.
+
+</p>
+
+
+<p class="roman">
+
+I feel lucky
+that I get to know that person.
+
+</p>
+
+
+</div>
+
+
+
+<div
+id="chapter4"
+class="chapter">
+
+
+<h2>
+
+Chapter IV
+
+<br>
+
+<span class="chapter-title">
+Tales From Distant Lands
+</span>
+
+</h2>
+
+
+<p class="roman">
+
+There are
+
+<strong>
+839 kilometres
+</strong>
+
+between us.
+
+</p>
+
+
+<p class="roman">
+
+Sometimes that number feels enormous.
+
+Sometimes it feels like nothing.
+
+</p>
+
+
+<p class="roman">
+
+But I have learned something:
+
+distance can measure space.
+
+It cannot measure love.
+
+It cannot measure understanding.
+
+And it certainly cannot measure
+how close one soul can feel to another.
+
+</p>
+
+
+<p class="roman">
+
+So yes,
+there are roads between us.
+
+But there is also a road
+that keeps leading me back to you.
+
+</p>
+
+
+</div>
+
+
+
+<div
+id="chapter5"
+class="chapter">
+
+
+<h2>
+
+Chapter V
+
+<br>
+
+<span class="chapter-title">
+The Road Goes Ever On
+</span>
+
+</h2>
+
+
+<p class="roman">
+
+There is a future
+I keep imagining.
+
+</p>
+
+
+<p class="roman">
+
+A home of our own.
+
+Decorated by both of us.
+
+Cats running through the rooms.
+
+Music coming from somewhere
+in the house.
+
+Maybe our own band.
+
+Maybe terrible songs.
+
+Maybe arguments about
+which song should be played first.
+
+</p>
+
+
+<p class="roman">
+
+I want to travel the world with you.
+
+I want to see places
+neither of us has seen.
+
+I want to experience things
+for the first time
+and immediately look at you
+because somehow
+that makes the experience better.
+
+</p>
+
+
+<p class="roman">
+
+I want mornings beside you.
+
+Nights beside you.
+
+Ordinary days beside you.
+
+</p>
+
+
+<p class="roman">
+
+Not all of it has happened yet.
+
+</p>
+
+
+<p class="roman">
+
+That is the best part.
+
+</p>
+
+
+</div>
+
+
+
+<div class="page-controls">
+
+
+<button
+class="btn"
+onclick="changeChapter(-1)">
+
+Previous
+
+</button>
+
+
+<span
+id="pageNumber"
+class="kicker">
+
+I / V
+
+</span>
+
+
+<button
+class="btn"
+onclick="changeChapter(1)">
+
+Next
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="nav">
+
+<button onclick="showScreen('quest')">
+
+Continue to the Quest
+
+</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =======================================================
+     QUEST
+======================================================== -->
+
+<section id="quest" class="screen">
+
+<div class="container">
+
+
+<div class="hero">
+
+<div class="kicker">
+A quest written for one particular traveller
+</div>
+
+
+<h1>
+The Quest of Burak
+</h1>
+
+
+<p class="note">
+
+There are no wrong answers.
+
+Only different roads.
+
+</p>
+
+</div>
+
+
+
+<div class="panel quest">
+
+
+<div
+id="questText"
+class="quest-text">
+
+You stand at a crossroads
+beneath a darkening sky.
+
+One road leads toward Rivendell.
+
+Another disappears into the wild.
+
+A third is marked only
+by a strange symbol.
+
+Which road do you choose?
+
+</div>
+
+
+
+<div
+id="choices"
+class="choices">
+
+
+<button
+class="choice"
+onclick="quest(1)">
+
+Follow the road to Rivendell.
+
+</button>
+
+
+<button
+class="choice"
+onclick="quest(2)">
+
+Take the road into the wild.
+
+</button>
+
+
+<button
+class="choice"
+onclick="quest(3)">
+
+Investigate the strange symbol.
+
+</button>
+
+
+</div>
+
+
+
+<div id="questResult"></div>
+
+
+</div>
+
+
+
+<div class="nav">
+
+<button onclick="showScreen('riddle')">
+
+Seek the Hidden Message
+
+</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =======================================================
+     HIDDEN MESSAGE
+======================================================== -->
+
+<section id="riddle" class="screen">
+
+<div class="container">
+
+
+<div class="panel riddle">
+
+
+<div class="kicker">
+A secret from Zarveth
+</div>
+
+
+<h1>
+The Hidden Message
+</h1>
+
+
+<div class="divider"></div>
+
+
+<p class="riddle-text">
+
+I have no wings,
+yet I can cross great distances.
+
+<br><br>
+
+I have no feet,
+yet I can find someone far away.
+
+<br><br>
+
+I cannot erase a road,
+but I can make the road feel smaller.
+
+<br><br>
+
+What am I?
+
+</p>
+
+
+<input
+id="answer"
+placeholder="Your answer..."
+>
+
+
+<br>
+
+
+<button
+class="btn"
+onclick="unlockMessage()">
+
+Unlock
+
+</button>
+
+
+
+<div
+id="secretMessage"
+class="secret panel">
+
+
+<h2>
+The answer was never the road.
+</h2>
+
+
+<p class="roman">
+
+It was the connection between
+two people who refuse to let
+distance have the final word.
+
+</p>
+
+
+<div class="divider"></div>
+
+
+<h2>
+My sweet 666.
+</h2>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="nav">
+
+<button onclick="showScreen('character')">
+
+Continue
+
+</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =======================================================
+     CHARACTER — FROM YOUR PERSPECTIVE
+======================================================== -->
+
+<section id="character" class="screen">
+
+<div class="container character-section">
+
+
+<div class="hero">
+
+
+<div class="kicker">
+What I see when I look at you
+</div>
+
+
+<h1>
+
+The Man
+
+<br>
+
+Behind the Name
+
+</h1>
+
+
+<p class="subtitle">
+
+Not a character sheet.
+
+Not a list of facts.
+
+Just the things I hope
+you never forget about yourself.
+
+</p>
+
+
+</div>
+
+
+
+<div class="panel">
+
+
+<p>
+
+There are many things
+I could say about you.
+
+</p>
+
+
+<p>
+
+I could talk about the things
+you love,
+the worlds you disappear into,
+the music you listen to,
+the things you create,
+or all the little details
+that make you who you are.
+
+</p>
+
+
+<p>
+
+But you already know those things.
+
+</p>
+
+
+<p>
+
+What you may not always see
+is the person I see
+when I look at you.
+
+</p>
+
+
+
+<div class="divider"></div>
+
+
+
+<h2>
+The Way You Care
+</h2>
+
+
+<p>
+
+One of the things I love most
+about you is your mercy.
+
+</p>
+
+
+<p>
+
+You have a way of understanding
+people that I deeply admire.
+
+</p>
+
+
+<p>
+
+You notice things.
+
+You think before you judge.
+
+You care about how someone feels.
+
+</p>
+
+
+<p>
+
+And somehow,
+even though you can be quiet
+around the world,
+there is this completely different
+version of you that appears
+when you are with someone
+you love.
+
+</p>
+
+
+<p>
+
+That version of you
+is one of my favourite things
+in the world.
+
+</p>
+
+
+
+<h2>
+The Way Your Mind Works
+</h2>
+
+
+<p>
+
+I love the way your mind works.
+
+</p>
+
+
+<p>
+
+You do not simply want to know
+that something works.
+
+</p>
+
+
+<p>
+
+You want to know
+
+<i>
+why.
+</i>
+
+</p>
+
+
+<p>
+
+You want to understand things.
+
+Take them apart.
+
+Solve them.
+
+Find what is happening
+underneath the surface.
+
+</p>
+
+
+<p>
+
+And I think that is beautiful.
+
+</p>
+
+
+<p>
+
+Because your curiosity
+is not simply something you do.
+
+It is part of who you are.
+
+</p>
+
+
+
+<h2>
+The Strange Familiarity of You
+</h2>
+
+
+<p>
+
+There is something about us
+that I still find difficult
+to explain.
+
+</p>
+
+
+<p>
+
+It is not simply that
+we like the same things.
+
+</p>
+
+
+<p>
+
+It is not simply that
+we understand the same jokes,
+listen to similar music,
+or get excited about
+the same strange little things.
+
+</p>
+
+
+<p>
+
+It is the feeling that,
+somehow,
+our souls speak
+the same language.
+
+</p>
+
+
+<p>
+
+Sometimes I look at you
+and think:
+
+</p>
+
+
+<p style="text-align:center;">
+
+<i>
+How can another person
+feel this familiar?
+</i>
+
+</p>
+
+
+
+<div class="divider"></div>
+
+
+
+<p class="quote">
+
+“Ben insanların arasında yabancıydım,
+sende kendimi buldum,
+bu yüzden seni seçtim.”
+
+</p>
+
+
+<p>
+
+I don't think I will ever
+forget you saying that.
+
+</p>
+
+
+<p>
+
+Because I think,
+in my own way,
+I found something in you too.
+
+</p>
+
+
+<p>
+
+A place where I do not have
+to explain every part of myself.
+
+</p>
+
+
+<p>
+
+A person I can laugh with,
+be strange with,
+be completely honest with,
+and simply exist beside.
+
+</p>
+
+
+
+<div
+class="panel"
+style="
+background:rgba(100,31,48,.16);
+margin-top:45px;
+text-align:center;
+">
+
+
+<h2>
+If I had to describe you
+in one sentence
+</h2>
+
+
+<p>
+
+You are someone
+I did not simply fall in love with —
+
+you are someone who feels like
+a part of me that I somehow found
+in another person.
+
+</p>
+
+
+</div>
+
+
+
+<p
+style="
+text-align:center;
+">
+
+And yes...
+
+</p>
+
+
+<p
+style="
+text-align:center;
+">
+
+you are also a vampire
+with a castle.
+
+</p>
+
+
+<p
+style="
+text-align:center;
+">
+
+I suppose every fellowship
+needs one.
+
+</p>
+
+
+</div>
+
+
+
+<div class="nav">
+
+<button onclick="showScreen('music')">
+
+Hear the Soundtrack
+
+</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =======================================================
+     SOUNDTRACK
+======================================================== -->
+
+<section id="music" class="screen">
+
+<div class="container">
+
+
+<div class="hero">
+
+
+<div class="kicker">
+Songs for the road
+</div>
+
+
+<h1>
+
+The Soundtrack
+
+<br>
+
+of Our Fellowship
+
+</h1>
+
+
+</div>
+
+
+
+<div class="panel">
+
+
+<div class="track">
+
+<div class="track-number">
+I
+</div>
+
+
+<div>
+
+<h3>
+The Shire — Home
+</h3>
+
+
+<p>
+
+For the ordinary moments
+that somehow become
+the most important ones.
+
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="track">
+
+<div class="track-number">
+II
+</div>
+
+
+<div>
+
+<h3>
+Rivendell — The Recognition
+</h3>
+
+
+<p>
+
+For that strange feeling
+of meeting someone
+and realizing how much
+of yourself you can see in them.
+
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="track">
+
+<div class="track-number">
+III
+</div>
+
+
+<div>
+
+<h3>
+The Long Road — 839 km
+</h3>
+
+
+<p>
+
+For every kilometre
+that exists on a map,
+
+and every reason it does not
+get to decide what we mean
+to each other.
+
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="track">
+
+<div class="track-number">
+IV
+</div>
+
+
+<div>
+
+<h3>
+Moria — The Difficult Days
+</h3>
+
+
+<p>
+
+For the days when things
+are heavier.
+
+A fellowship is not measured
+only by how it celebrates,
+
+but by how it stays.
+
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="track">
+
+<div class="track-number">
+V
+</div>
+
+
+<div>
+
+<h3>
+Lothlórien — The Future
+</h3>
+
+
+<p>
+
+For a home.
+
+Cats.
+
+Music.
+
+A world to explore.
+
+And mornings that no longer
+begin with distance.
+
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="track">
+
+<div class="track-number">
+VI
+</div>
+
+
+<div>
+
+<h3>
+The Unwritten Track
+</h3>
+
+
+<p>
+
+Some songs have not
+been written yet.
+
+Some places have not
+been visited.
+
+Some chapters have not
+happened.
+
+</p>
+
+
+<p>
+
+Good.
+
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<div class="nav">
+
+<button onclick="showScreen('final')">
+
+Open the Final Chapter
+
+</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =======================================================
+     FINAL CHAPTER
+======================================================== -->
+
+<section id="final" class="screen">
+
+<div class="container">
+
+
+<div class="panel final">
+
+
+<div class="hero">
+
+
+<div class="kicker">
+The final chapter — for now
+</div>
+
+
+<h1>
+
+Musica sei, Adagio.
+
+</h1>
+
+
+<div class="divider"></div>
+
+
+</div>
+
+
+
+<p>
+
+If you ever wonder
+what you mean to me,
+
+I hope you remember this.
+
+</p>
+
+
+
+<p>
+
+I am proud of you.
+
+</p>
+
+
+<p>
+
+Not only when you succeed.
+
+Not only when you accomplish something.
+
+Not only when everything
+is going right.
+
+</p>
+
+
+<p>
+
+I am proud of the person
+you are,
+
+and I will be behind you
+through every road
+you choose to take.
+
+</p>
+
+
+
+<p>
+
+You will never be completely
+alone in this life.
+
+</p>
+
+
+<p>
+
+Not while I am here.
+
+</p>
+
+
+
+<p>
+
+There may be 839 kilometres
+between us now,
+
+but there is no distance
+inside the place
+you have in my heart.
+
+</p>
+
+
+
+<p>
+
+And one day,
+these kilometres will be
+nothing more than a number
+we remember.
+
+</p>
+
+
+<p>
+
+One day I will not have
+to miss you from far away.
+
+</p>
+
+
+<p>
+
+I will simply be there.
+
+</p>
+
+
+
+<p>
+
+I will be there for
+the ordinary mornings
+and the ridiculous nights.
+
+</p>
+
+
+<p>
+
+For the difficult days.
+
+For the celebrations.
+
+For the moments when
+everything goes wrong.
+
+For the moments when
+everything goes right.
+
+</p>
+
+
+<p>
+
+For all the versions of life
+that we have not lived yet.
+
+</p>
+
+
+
+<div class="divider"></div>
+
+
+
+<h2 style="text-align:center;">
+
+The Life I Want With You
+
+</h2>
+
+
+
+<p>
+
+I want a home that belongs
+to both of us.
+
+</p>
+
+
+<p>
+
+A home we decorate together,
+
+where nothing has to be perfect
+because it is ours.
+
+</p>
+
+
+<p>
+
+I want cats running
+around the house.
+
+</p>
+
+
+<p>
+
+I want music coming
+from another room
+
+because we decided
+to make something together.
+
+</p>
+
+
+<p>
+
+I want us to have
+our own band,
+
+even if we end up being terrible
+and arguing over absolutely
+ridiculous things.
+
+</p>
+
+
+<p>
+
+I want to travel the world
+with you.
+
+</p>
+
+
+<p>
+
+I want to see places
+neither of us has seen.
+
+</p>
+
+
+<p>
+
+I want to experience things
+for the first time
+and immediately look at you
+because somehow
+that makes the experience better.
+
+</p>
+
+
+<p>
+
+I want mornings beside you.
+
+</p>
+
+
+<p>
+
+Nights beside you.
+
+</p>
+
+
+<p>
+
+Ordinary days beside you.
+
+</p>
+
+
+<p>
+
+Not all of it has happened yet.
+
+</p>
+
+
+<p style="text-align:center;">
+
+That is the best part.
+
+</p>
+
+
+
+<div class="divider"></div>
+
+
+
+<p class="quote">
+
+My soul embraced yours.
+
+</p>
+
+
+
+<p>
+
+I love you because
+you are you.
+
+</p>
+
+
+<p>
+
+And I do not want
+some perfect version of you.
+
+</p>
+
+
+<p>
+
+I want <i>you</i>.
+
+</p>
+
+
+<p>
+
+Your mind.
+
+Your kindness.
+
+Your humour.
+
+Your strange little worlds.
+
+Your curiosity.
+
+Your quietness.
+
+Your energy.
+
+Your ridiculous vampire castle.
+
+</p>
+
+
+<p>
+
+All of it.
+
+</p>
+
+
+
+<p>
+
+And whatever happens
+on the roads ahead,
+
+I want you to know one thing:
+
+</p>
+
+
+<p
+style="
+text-align:center;
+font-size:1.45rem;
+">
+
+I will keep choosing you.
+
+</p>
+
+
+
+<p>
+
+Not because the road
+is always easy.
+
+</p>
+
+
+<p>
+
+But because you are
+worth the journey.
+
+</p>
+
+
+
+<p
+style="
+text-align:center;
+font-size:1.45rem;
+margin-top:50px;
+">
+
+The road goes ever on.
+
+</p>
+
+
+<p
+style="
+text-align:center;
+font-size:1.2rem;
+">
+
+And ours has only just begun.
+
+</p>
+
+
+
+<div class="divider"></div>
+
+
+
+<div class="signature">
+
+QUEEN OF ZARVETH
+
+<br>
+
+<span style="font-size:.75rem;">
+♡
+</span>
+
+<br>
+
+DRACULA BURAK
+
+</div>
+
+
+</div>
+
+
+
+<div class="footer">
+
+For my Adagio.
+
+<br>
+
+For the road ahead.
+
+<br>
+
+For all the chapters
+we have not written yet.
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =======================================================
+     JAVASCRIPT
+======================================================== -->
+
+<script>
+
+
+/* =========================================================
+   SCREEN NAVIGATION
+========================================================= */
+
+const screens = [
+
+    "home",
+    "map",
+    "book",
+    "quest",
+    "riddle",
+    "character",
+    "music",
+    "final"
+
+];
+
+
+function showScreen(id) {
+
+    screens.forEach(
+        screen => {
+
+            document
+            .getElementById(screen)
+            .classList
+            .toggle(
+                "active",
+                screen === id
+            );
+
         }
-      });
+    );
 
-      input.addEventListener('keydown', (e) => {
-        if (e.key === 'Backspace' && index > 0 && !e.target.value) {
-          inputs[index - 1].focus();
-        }
-      });
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
     });
 
-    function checkPasscode() {
-      const code = Array.from(inputs).map(i => i.value).join('');
-      if (code === "666") {
-        document.getElementById('lock-screen').style.display = 'none';
-        document.getElementById('main-content').style.display = 'block';
-      } else {
-        const err = document.getElementById('error-msg');
-        err.style.display = 'block';
-        inputs.forEach(i => i.value = '');
-        inputs[0].focus();
-      }
+}
+
+
+
+/* =========================================================
+   MIDDLE-EARTH MAP
+========================================================= */
+
+const places = {
+
+
+    shire: {
+
+        title:
+        "The Shire",
+
+        text:
+
+        "This is where our story begins. Not with kings or battles, but with a small encounter that quietly changed the road ahead."
+
+    },
+
+
+    rivendell: {
+
+        title:
+        "Rivendell",
+
+        text:
+
+        "For recognition — that rare feeling of meeting someone and discovering that your minds, humour, tastes and strange little worlds somehow fit."
+
+    },
+
+
+    gondor: {
+
+        title:
+        "Gondor",
+
+        text:
+
+        "For courage, loyalty, and the promise that whatever comes, there is someone standing beside you."
+
+    },
+
+
+    road: {
+
+        title:
+        "The Long Road",
+
+        text:
+
+        "839 kilometres. A number that looks enormous on a map and much less enormous beside everything still waiting to be lived."
+
+    },
+
+
+    moria: {
+
+        title:
+        "Moria",
+
+        text:
+
+        "For the harder days. Not every chapter is light, but a fellowship is built by staying kind when the road becomes difficult."
+
+    },
+
+
+    lorien: {
+
+        title:
+        "Lothlórien",
+
+        text:
+
+        "For the future we imagine: a home, cats, music, mornings together, and a life built side by side."
+
+    },
+
+
+    mordor: {
+
+        title:
+        "Mordor",
+
+        text:
+
+        "A place officially reserved for problems we are absolutely not inviting into our future. Please leave immediately."
+
     }
 
-    // Interactive response
-    function showChoice(num) {
-      const res = document.getElementById('choice-result');
-      res.style.display = 'block';
-      if (num === 1) {
-        res.innerHTML = "✨ <strong>Quest Accepted:</strong> A cozy house decorated together, filled with our cats, where we wake up side-by-side every single day.";
-      } else if (num === 2) {
-        res.innerHTML = "🎸 <strong>Quest Accepted:</strong> Guitars in hand, creating endless riffs, living every experience and music together.";
-      } else if (num === 3) {
-        res.innerHTML = "🐉 <strong>Quest Accepted:</strong> Erasing all 839 kilometers forever. No distance will ever hold us apart.";
-      }
+};
+
+
+function place(id) {
+
+    const location =
+        places[id];
+
+
+    document
+    .getElementById("placePanel")
+    .innerHTML = `
+
+        <h2>
+            ${location.title}
+        </h2>
+
+        <p
+        class="roman"
+        style="
+        font-size:1.2rem;
+        line-height:1.8;
+        ">
+
+            ${location.text}
+
+        </p>
+
+    `;
+
+}
+
+
+
+/* =========================================================
+   RED BOOK
+========================================================= */
+
+let chapter = 1;
+
+
+function changeChapter(direction) {
+
+    chapter += direction;
+
+
+    if (chapter < 1) {
+
+        chapter = 1;
+
     }
-  </script>
+
+
+    if (chapter > 5) {
+
+        chapter = 5;
+
+    }
+
+
+    for (
+        let i = 1;
+        i <= 5;
+        i++
+    ) {
+
+        document
+        .getElementById(
+            "chapter" + i
+        )
+        .classList
+        .toggle(
+            "active",
+            i === chapter
+        );
+
+    }
+
+
+    const romanNumbers = [
+
+        "I",
+        "II",
+        "III",
+        "IV",
+        "V"
+
+    ];
+
+
+    document
+    .getElementById("pageNumber")
+    .textContent =
+        romanNumbers[chapter - 1]
+        + " / V";
+
+}
+
+
+
+/* =========================================================
+   QUEST
+========================================================= */
+
+let questStage = 0;
+
+
+function quest(choice) {
+
+    const text =
+        document.getElementById(
+            "questText"
+        );
+
+
+    const choices =
+        document.getElementById(
+            "choices"
+        );
+
+
+    const result =
+        document.getElementById(
+            "questResult"
+        );
+
+
+    if (questStage === 0) {
+
+        questStage = 1;
+
+
+        text.innerHTML = `
+
+            At Rivendell,
+            an old keeper offers you
+            three gifts:
+
+            a sword,
+
+            a map,
+
+            or a book.
+
+            <br><br>
+
+            Which do you take?
+
+        `;
+
+
+        choices.innerHTML = `
+
+            <button
+            class="choice"
+            onclick="quest(1)">
+
+                The sword —
+                a practical choice.
+
+            </button>
+
+
+            <button
+            class="choice"
+            onclick="quest(2)">
+
+                The map —
+                there are too many roads
+                to ignore.
+
+            </button>
+
+
+            <button
+            class="choice"
+            onclick="quest(3)">
+
+                The book —
+                there must be something
+                worth learning.
+
+            </button>
+
+        `;
+
+
+        return;
+
+    }
+
+
+
+    if (questStage === 1) {
+
+        questStage = 2;
+
+
+        text.innerHTML = `
+
+            The keeper smiles.
+
+            <br><br>
+
+            “Then you understand.”
+
+            <br><br>
+
+            A final road appears.
+
+            At its end there is
+            no treasure,
+            no crown,
+            and no ancient weapon.
+
+            <br><br>
+
+            There is only
+            someone waiting.
+
+        `;
+
+
+        choices.innerHTML = `
+
+            <button
+            class="choice"
+            onclick="quest(1)">
+
+                Walk toward them.
+
+            </button>
+
+
+            <button
+            class="choice"
+            onclick="quest(2)">
+
+                Run toward them.
+
+            </button>
+
+
+            <button
+            class="choice"
+            onclick="quest(3)">
+
+                Ask whether there
+                is a shorter road.
+
+            </button>
+
+        `;
+
+
+        return;
+
+    }
+
+
+
+    text.innerHTML = `
+
+        And suddenly,
+        the whole quest makes sense.
+
+    `;
+
+
+    choices.innerHTML = `
+
+        <button
+        class="choice"
+        onclick="showScreen('riddle')">
+
+            Continue.
+
+        </button>
+
+    `;
+
+
+    result.innerHTML = `
+
+        <p
+        class="roman"
+        style="font-size:1.15rem;">
+
+            The quest was never
+            really about the treasure.
+
+            <br><br>
+
+            Some destinations
+            are simply worth the journey.
+
+        </p>
+
+    `;
+
+}
+
+
+
+/* =========================================================
+   HIDDEN MESSAGE
+========================================================= */
+
+function unlockMessage() {
+
+    const answer =
+        document
+        .getElementById("answer")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const accepted = [
+
+        "love",
+        "a message",
+        "message",
+        "music",
+        "a letter",
+        "letter",
+        "connection"
+
+    ];
+
+
+    const secret =
+        document.getElementById(
+            "secretMessage"
+        );
+
+
+    if (
+        accepted.includes(answer)
+    ) {
+
+        secret.classList.add(
+            "show"
+        );
+
+    }
+
+    else {
+
+        secret.classList.add(
+            "show"
+        );
+
+
+        secret.innerHTML = `
+
+            <h2>
+
+                Perhaps there was
+                never only one answer.
+
+            </h2>
+
+
+            <p class="roman">
+
+                The real answer is
+                the connection between
+                two people who refuse
+                to let distance have
+                the final word.
+
+            </p>
+
+
+            <div class="divider"></div>
+
+
+            <h2>
+
+                My sweet 666.
+
+            </h2>
+
+        `;
+
+    }
+
+}
+
+</script>
+
+
 </body>
 </html>
